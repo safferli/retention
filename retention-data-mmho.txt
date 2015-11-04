@@ -1,0 +1,7 @@
+die Funnels kamen vor allem aus 2 Quellen. Teilweise war das QuestDashboard von Dmitry (http://10.26.0.129:3838/mmho_quest_progression_dashboard/), Die genaueste Analyse vom alten Verhalten war https://mdc-tomcat-jira48.ubisoft.org/jira/browse/BIABB-1109, da haben wir aber noch kein Update nach Red Steel requested. Ich habe dir trotzdem noch einmal die Daten davon angehängt + die Präsentation, die Palle daraus machte.
+
+Sehr hilfreich dürften auch die Content Design Präsentationen sein, die seh gut den Status Vorher / Nachher zusammenfassen. Die Dateien sind zu groß zum verschicken, aber du kannst sie im Wiki herunterladen: https://mnz-srv-wiki/wiki/display/MMHO/Early+Game+Retention+-+Rework. Nicht alles was da steht stimmt noch, und viele der neuen Screenshot sind Work Improgress, aber ich denke für eine generell Präse sollte das reichen.
+
+Für den aktuellen Stand kannst du ja einfach Screenshots im Spiel machen. 
+
+Ich hoffe, das hilft dir weiter.

@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Retention</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Retention">
+  <meta name="author" content="Christoph Safferling">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="libraries/widgets/bootstrap/css/bootstrap.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+      <slide class="nobackground">
+    <article class="flexbox vcenter">
+      <span>
+        <img width='300px' src="assets/img/bluebyte.jpg">
+      </span>
+    </article>
+  </slide>
+    <slide class="title-slide segue nobackground">
+  <aside class="gdbar">
+    <img src="assets/img/ubisoft.png">
+  </aside>
+  <hgroup class="auto-fadein">
+    <h1>Retention</h1>
+    <h2></h2>
+    <p>Christoph Safferling<br/>Head of Game Analytics, Ubisoft Blue Byte</p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <article data-timings="">
+    <!-- 
+    'f' enable fullscreen mode
+    'w' toggle widescreen mode
+    'o' enable overview mode
+    'h' enable code highlight mode
+    'p' show presenter notes
+    http://rmarkdown.rstudio.com/ioslides_presentation_format.html
+-->
+
+<style>
+.title-slide {
+  background-color: #336FA5; /* 336FA5 225992 042864 */
+}
+
+.title-slide hgroup > h1, 
+.title-slide hgroup > h2 {
+  color: #000000;
+}
+</style>
+
+<h2>Introduction</h2>
+
+<h3>Blue Byte</h3>
+
+<ul>
+<li>founded in 1988, best known for the <em>Settlers</em> and <em>Anno</em> brand</li>
+<li>fully acquired by Ubisoft in 2001</li>
+<li>online games since 2010</li>
+<li>newest title: <a href="https://itunes.apple.com/nz/app/assassins-creed-identity/id880971164?mt=8">Assassin&#39;s Creed: Identity</a> (mobile)</li>
+</ul>
+
+<h3>Christoph Safferling</h3>
+
+<ul>
+<li>since 2012: Head of Game Analytics at Blue Byte</li>
+<li>PhD in economics: <a href="http://kops.uni-konstanz.de/handle/123456789/17259?locale-attribute=en">Three Essays on the Economics of Online Games</a></li>
+<li>academic papers available at <a href="https://ideas.repec.org/f/psa961.html">repec.org</a></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>Retention, Engagement, Dropoff, Churn... oh my!</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><center><img src="assets/img/dilbert_engagement.gif" width="70%" style="margin: 50px 0px" /></center></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>Retention is Monetisation</h2>
+  </hgroup>
+  <article data-timings="">
+    <p class='build'><span>\[ 
+  \begin{aligned}
+    \text{revenue} & = \text{total payments} \times \text{arppu} \\
+                   & = n\times \text{average payments per user}\times \text{arppu}                   
+  \end{aligned}
+\]</span></p>
+
+<ul class = "build incremental">
+<li>\(\text{appu}(R)\): average payments per user is a function of retention \(R\)</li>
+<li>optimising for conversion is a small-scale, one-off fix</li>
+<li>optimising for retention is a long-term, multiplicative result</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Retention is not Churn</h2>
+  </hgroup>
+  <article data-timings="">
+    <p class='build'><span>\[ 
+  \text{churn} = 1 - \left[\big(\text{MAU}(t) - 
+    \sum_{i=(t-30)}^{t}\text{New Actives}_i\big)/\text{MAU}(t-30)\right] 
+\]</span></p>
+
+<ul class = "build incremental">
+<li>stop using Churn! 
+
+<ul>
+<li>30-day anchor, and is 30 days &quot;late&quot;</li>
+<li>is &quot;only&quot; a measure of the stable population</li>
+</ul></li>
+<li>assume: 
+
+<ul>
+<li>two types of players: veterans and marketing traffic</li>
+<li>900 veterans exist, and never leave the game</li>
+<li>100 marketing players join and immediately leave</li>
+</ul></li>
+<li>resulting churn rate: 10%</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-5" style="background:;">
+  <hgroup>
+    <h2>Retention are cohorts</h2>
+  </hgroup>
+  <article data-timings="">
+    <h3>Dropoff is kind of like Retention</h3>
+
+<p><center><img src="assets/img/dropoff_by_class.png" width="70%" /></center></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-6" style="background:;">
+  <hgroup>
+    <h3>Retention of a cohort</h3>
+  </hgroup>
+  <article data-timings="">
+    <p><center><img src="assets/img/retention_forecast.png" width="80%" /></center></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-7" style="background:;">
+  <hgroup>
+    <h3>Retention of several cohorts</h3>
+  </hgroup>
+  <article data-timings="">
+    <p><center><img src="assets/img/retention_by_games_id.png" width="80%" /></center></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-8" style="background:;">
+  <hgroup>
+    <h3>Retention of paying users</h3>
+  </hgroup>
+  <article data-timings="">
+    <p><center><img src="assets/img/paying_retention.png" width="80%" /></center></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-9" style="background:;">
+  <hgroup>
+    <h3>Validating your model</h3>
+  </hgroup>
+  <article data-timings="">
+    <p><center><img src="assets/img/paying_prediction.png" width="80%" /></center></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-10" style="background:;">
+  <hgroup>
+    <h2>Case Study: Might&amp;Magic Heroes Online</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><center><img src="assets/img/heroes_logo_white_trans.png" width="450" /></center></p>
+
+<ul>
+<li>MMHO is an online version of the traditional Heroes franchise</li>
+<li><a href="http://www.heroes-online.com">http://www.heroes-online.com</a></li>
+<li>turn-based, tactical strategy in a fantasy setting with RPG elements</li>
+<li>Blue Byte is traditionally strong in strategy&hellip; not (back then) in RPG</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-11" style="background:;">
+  <hgroup>
+    <h3>Heroes as an MMO</h3>
+  </hgroup>
+  <article data-timings="">
+    <p><center><img src="assets/img/MMHO_EN_WhisperingPlains_Arrival_Hall.jpg" width="100%" /></center></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-12" style="background:;">
+  <hgroup>
+    <h3>Hex-field, turn-based combat</h3>
+  </hgroup>
+  <article data-timings="">
+    <p><center><img src="assets/img/MMHO_EN_PvP_Battle4.jpg" width="100%" /></center></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-13" style="background:;">
+  <hgroup>
+    <h2>Systemic content</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>provide content for players to prevent churn</li>
+<li>systemic gameplay allows for easier monetisation setup</li>
+<li>two examples:
+
+<ul>
+<li>challenge maps</li>
+<li>forgotten sites (co-op raids)</li>
+</ul></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-14" style="background:;">
+  <hgroup>
+    <h3>Challenge maps</h3>
+  </hgroup>
+  <article data-timings="">
+    <p><center><img src="assets/img/ForgottenSites03.jpeg" width="100%" /></center></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-15" style="background:;">
+  <hgroup>
+    <h3>Co-op raids</h3>
+  </hgroup>
+  <article data-timings="">
+    <p><center><img src="assets/img/raid_provinces.png" width="80%" /></center></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-16" style="background:;">
+  <article data-timings="">
+    <p><center><img src="assets/img/map02_perk01.jpg" width="90%" /></center></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-17" style="background:;">
+  <article data-timings="">
+    <p><center><img src="assets/img/map02_perk02.jpg" width="90%" /></center></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-18" style="background:;">
+  <hgroup>
+    <h2>New Tutorial</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>player &quot;feels like a hero&quot;</li>
+<li>easier, streamlined features</li>
+<li>showcase the game system earlier (open world feeling)</li>
+<li>align mood and gameplay art direction</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-19" style="background:;">
+  <hgroup>
+    <h3>To reach first combat</h3>
+  </hgroup>
+  <article data-timings="">
+    <table><thead>
+<tr>
+<th>New tutorial</th>
+<th>Old tutorial</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>2 clicks</td>
+<td>min. 11 clicks</td>
+</tr>
+<tr>
+<td>1 NPC, 1 dialogue page</td>
+<td>3 NPCs, 5 dialoge pages</td>
+</tr>
+<tr>
+<td>3 systems introduced</td>
+<td>6 systems introduced</td>
+</tr>
+<tr>
+<td>3 steps needed</td>
+<td>10 steps</td>
+</tr>
+</tbody></table>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-20" style="background:;">
+  <hgroup>
+    <h3>Mood setting</h3>
+  </hgroup>
+  <article data-timings="">
+    <p><center><img src="assets/img/Tut0.jpeg" width="100%" /></center></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-21" style="background:;">
+  <hgroup>
+    <h3>Initial screen</h3>
+  </hgroup>
+  <article data-timings="">
+    <p><center><img src="assets/img/TutHaven1.jpeg" width="100%" /></center></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-22" style="background:;">
+  <hgroup>
+    <h3>First combat</h3>
+  </hgroup>
+  <article data-timings="">
+    <p><center><img src="assets/img/TutHaven2.jpeg" width="100%" /></center></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-23" style="background:;">
+  <hgroup>
+    <h2>Contacts</h2>
+  </hgroup>
+  <article data-timings="">
+    <table>
+<!-- since we have no thead, there is no top border line for the table from CSS; include it here -->
+<tr style="border-top:1pt solid #CFCEBD;">
+    <td>email</td>
+    <td><a href="mailto:christoph.safferling@ubisoft.com">christoph.safferling@ubisoft.com</a></td>
+</tr>
+<tr>
+    <td>LinkedIn</td>
+    <td><a href='http://de.linkedin.com/pub/christoph-safferling/40/659/19a'>http://de.linkedin.com/pub/christoph-safferling/40/659/19a</td>
+</tr>
+<tr>
+    <td>twitter</td>
+    <td><tt><a href='https://twitter.com/safferli'>@safferli</a></tt></td>
+</tr>
+</table>
+
+<!-- ## add an iframe to the slide 
+<script>
+$('#myslide').on('slideenter', function(){
+  $(this).find('article')
+    .append('<iframe src="http://bl.ocks.org/mbostock/raw/1256572/"></iframe>')
+});
+$('#myslide').on('slideleave', function(){
+  $(this).find('iframe').remove();
+});
+</script>
+-->
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title=''>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Retention, Engagement, Dropoff, Churn... oh my!'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Retention is Monetisation'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Retention is not Churn'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='Retention are cohorts'>
+         5
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title='Retention of a cohort'>
+         6
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=7 title='Retention of several cohorts'>
+         7
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=8 title='Retention of paying users'>
+         8
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=9 title='Validating your model'>
+         9
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=10 title='Case Study: Might&amp;Magic Heroes Online'>
+         10
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=11 title='Heroes as an MMO'>
+         11
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=12 title='Hex-field, turn-based combat'>
+         12
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=13 title='Systemic content'>
+         13
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=14 title='Challenge maps'>
+         14
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=15 title='Co-op raids'>
+         15
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=16 title=''>
+         16
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=17 title=''>
+         17
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=18 title='New Tutorial'>
+         18
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=19 title='To reach first combat'>
+         19
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=20 title='Mood setting'>
+         20
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=21 title='Initial screen'>
+         21
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=22 title='First combat'>
+         22
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=23 title='Contacts'>
+         23
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  <script src="libraries/widgets/bootstrap/js/bootstrap.min.js"></script>
+<script src="libraries/widgets/bootstrap/js/bootbox.min.js"></script>
+
+  <script>  
+  $(function (){ 
+    $("#example").popover(); 
+    $("[rel='tooltip']").tooltip(); 
+  });  
+  </script>  
+  <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script> -->
+  <script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script>
+<!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
